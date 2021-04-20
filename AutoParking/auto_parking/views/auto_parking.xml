@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- vaizdo architektura-->
+    <record id="auto_parking.parking_tree" model="ir.ui.view">
+        <field name="name">Auto parking view tree</field>
+        <field name="model">auto.parking</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <field name="name"/>
+            <field name="brand_id"/>
+            <field name="date_from"/>
+            <field name="date_to"/>
+            <field name="car_active"/>
+            <field name="image" widget="image" class="oe_right oe_image_custom" style="width: 90px; height: 50px;"/>
+            <field name="park_driver"/>
+            <field name="park_rating" widget="priority"/>
+        </field>
+    </record>
+
+
+    <record id="auto_parking.parking_form" model="ir.ui.view">
+        <field name="name">Auto parking view form</field>
+        <field name="model">auto.parking</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Auto Parking">
+                <header>
+                    <!-- <button name="start_parking" string="Start parking" type="object" class="oe_highlight"/>
+                    <button name="end_parking" string="End parking" type="object" class="oe_highlight"/> -->
+                    <button string="Set to parked" type="object" name="start_parking" class="oe_highlight" attrs="{'invisible': [('state','!=','unset')]}"/>
+                    <button string="Set to finished" type="object" name="end_parking" attrs="{'invisible': [('state','=','finished')]}"/>
+                    <!--This will create the statusbar, thanks to the widget. -->
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group string="General">
+                            <field name="name"/>
+                            <field name="brand_id"/>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                            <field name="model_id" domain="[('brand_id', '=', brand_id)]"/>
+                            <field name="size" widget="radio"/>
+                            <field name="brands_at_garage" widget="statinfo"/>
+                            <field name="car_active" widget="boolean_toggle"/>
+                            <field name="park_time" widget="float_time" attrs= 
+                            "{'invisible': [('park_time','=', 0)]}" />
+                            <field name="park_rating" widget="priority"/>
+                            <field name="park_driver" widget="res_partner_many2one"/>
+                            <!-- <field name="feature_ids" widget="many2many_tags"/> -->
+                            <field name="image" widget="image" class="oe_right oe_image_custom" style="width: 150px; height: 150px;"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_auto_parking_kanban">
+        <field name="name">auto.parking.canban</field>
+        <field name="model">auto.parking</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="name">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="
+                                                  oe_kanban_global_click_edit oe_semantic_html_override
+                                                  oe_kanban_card {{record.group_fancy==1 ? 'oe_kanban_card_fancy' : ''}}">
+                            <div class="oe_dropdown_kanban">
+                                <!-- dropdown menu -->
+                                <div class="oe_dropdown_toggle">
+                                    <i class="fa fa-bars fa-lg" title="Manage" aria-label="Manage"/>
+                                    <ul class="oe_dropdown_menu">
+                                        <li>
+                                            <a type="delete">Delete</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="oe_clear"></div>
+                            </div>
+                            <div t-attf-class="oe_kanban_content">
+                                <field name="name"/>
+                                <br/>
+                                <field name="date_from"/>
+                                <br/>
+                                <field name="date_to"/>
+                                <br/>
+                                <field name="park_rating" widget="priority"/>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+
+    <!-- veiksmas kuris iskvies vaizda-->
+    <record id="action_auto_parking" model="ir.actions.act_window">
+        <field name="type">ir.actions.act_window</field>
+        <field name="name">Auto parking action</field>
+        <field name="res_model">auto.parking</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+    <menuitem id="main_auto_menu" name="Auto parking"/>
+
+    <menuitem id="auto_parking_menu" name="Auto Parking" parent="main_auto_menu"/>
+    <menuitem id="auto_parking_tree" parent="auto_parking_menu" action="action_auto_parking"/>
+
+
+</odoo>

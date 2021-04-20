@@ -1,0 +1,6 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+auto_parking_user,auto parking,model_auto_parking,auto_parking_user,1,1,1,0
+auto_parking_manager,auto parking,model_auto_parking,auto_parking_manager,1,1,1,1
+auto_parking_brand_user,auto parking brand,model_auto_parking_brand,,1,1,1,0
+auto_parking_model_user,auto parking model,model_auto_parking_model,,1,1,1,1
+auto_parking_features_user,auto parking features,model_auto_parking_features,,1,1,1,1

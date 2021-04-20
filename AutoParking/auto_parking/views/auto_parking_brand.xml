@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- vaizdo architektura-->
+    <record id="auto_parking.brand_tree" model="ir.ui.view">
+        <field name="name">Auto parking brand view tree</field>
+        <field name="model">auto.parking.brand</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <field name="name"/>
+            <field name="model_ids"/>
+        </field>
+    </record>
+
+
+
+    <record id="auto_parking.brand_form" model="ir.ui.view">
+        <field name="name">Auto parking brand view form</field>
+        <field name="model">auto.parking.brand</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Auto Parking Brand">
+                <sheet>
+                    <group>
+                        <group string="General">
+                            <field name="name"/>
+                            <field name="model_ids">
+                                <tree string="Models" editable="bottom">
+                                    <field name="name"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- veiksmas kuris iskvies vaizda-->
+    <record id="action_auto_parking_brand" model="ir.actions.act_window">
+        <field name="type">ir.actions.act_window</field>
+        <field name="name">Auto parking brand action</field>
+        <field name="res_model">auto.parking.brand</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem id="auto_parking_brand_tree" parent="auto_parking_menu" action="action_auto_parking_brand"/>
+
+
+</odoo>

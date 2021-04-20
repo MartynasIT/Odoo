@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="auto_parking_brand_inherit" model="ir.ui.view">
+        <field name="name">auto.parking.brand.inherit</field>
+        <field name="model">auto.parking.brand</field>
+        <field name="inherit_id" ref="auto_parking.brand_form"/>
+        <field name="arch" type="xml">
+
+
+            <!-- <xpath expr="//group" position="after">
+                <field name="feature_ids" widget="many2many_tags"/>
+            </xpath> -->
+
+        </field>
+
+    </record>
+
+
+</odoo>

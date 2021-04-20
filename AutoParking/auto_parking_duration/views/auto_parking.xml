@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Form view for "model" Mes cia paveldime vaizda kad ideti irasus i auto.parking-->
+    <record id="auto_parking_inherit" model="ir.ui.view">
+        <field name="name">auto.parking.inherit</field>
+        <field name="model">auto.parking</field>
+        <field name="inherit_id" ref="auto_parking.parking_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//group" position="after">
+                <notebook colspan="1">
+                    <page string="Notes">
+                        <field name="park_note" widget="section_and_note_text"/>
+                    </page>
+                    <page string="History">
+                        <field name="tracking_ids" widget="one2many">
+                            <tree>
+                                <field name="name"/>
+                                <field name="date_from"/>
+                                <field name="date_to"/>
+                                <field name="total_park_time"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="Park contact info">
+                        <tree>
+                            <group>
+                                <field name="park_email" widget="email"/>
+                                <field name="park_phone" widget="phone"/>
+                            </group>
+
+                        </tree>
+                    </page>
+                </notebook>
+            </xpath>
+            <!-- <xpath expr="//field[@name='park_driver']" position="after">
+                <field name="feature_ids" widget="many2many_tags">
+                </field>
+            </xpath> -->
+
+        </field>
+    </record>
+
+
+</odoo>

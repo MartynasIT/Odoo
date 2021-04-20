@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- vaizdo architektura-->
+    <record id="auto_parking_tracking_view" model="ir.ui.view">
+        <field name="name">Auto parking tracking</field>
+        <field name="model">auto.parking.tracking</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <field name="name"/>
+            <field name="date_from"/>
+            <field name="date_to"/>
+            <field name="total_park_time"/>
+        </field>
+    </record>
+
+    <!-- veiksmas kuris iskvies vaizda-->
+    <record id="action_auto_parking_tracking" model="ir.actions.act_window">
+        <field name="type">ir.actions.act_window</field>
+        <field name="name">Auto parking tracking action</field>
+        <field name="res_model">auto.parking.tracking</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem id="main_auto_tracking_menu" name="Auto parking tracking"/>
+    <menuitem id="auto_parking_tracking_menu" name="Auto Parking tracking" parent="main_auto_tracking_menu"/>
+    <menuitem id="auto_parking__tracking_tree" parent="auto_parking_tracking_menu" action="action_auto_parking_tracking"/>
+</odoo>

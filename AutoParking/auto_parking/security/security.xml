@@ -1,0 +1,10 @@
+<odoo>
+    <record id="auto_parking_user" model="res.groups">
+        <field name="name">AutoParking / User</field>
+    </record>
+
+    <record id="auto_parking_manager" model="res.groups">
+        <field name="name">AutoParking / Manager</field>
+    </record>
+
+</odoo>
